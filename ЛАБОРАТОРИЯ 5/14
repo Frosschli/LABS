@@ -1,0 +1,30 @@
+open System
+
+(*Задание 14 Написать функцию обход делителей числа, которая
+выполняет операции над делителями числа, принимает три аргумента,
+число, функция (например, сумма, произведение, минимум, максимум) и
+инициализирующее значение. Функция должна иметь два Int аргумента и
+возвращать Int.*)
+
+
+let Div x func INIT=
+   let rec Div_Rec x func INIT beg=
+       if beg = 0 then INIT
+       else
+           let INIT_new = 
+               if x % beg = 0 then func beg INIT
+               else INIT
+           let beg_new = beg-1
+           Div_Rec x func INIT_new beg_new
+   Div_Rec x func INIT x
+
+[<EntryPoint>]
+let main argv =
+    let x = Convert.ToInt32(Console.ReadLine())
+    let add = Div x (fun a b -> a+b) 0
+    let mult = Div x (fun a b -> a*b) 1
+    printfn "Сумма делителей числа x:"
+    printfn "%d" (add)
+    printfn "Произведение числа x:" 
+    printfn "%d" (mult)
+    0
