@@ -1,0 +1,6 @@
+/* Вариант 2 Построить предикат grand_ma(X, Y), который проверяет,
+является ли X бабушкой Y. Построить предикат grand_mas(X), который
+выводит всех бабушек X. */
+
+grand_ma(X,Y):-parent(X,Z),parent(Z,Y),woman(X),!.
+grand_mas(X):-grand_ma(Y,X),write(Y).
